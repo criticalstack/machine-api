@@ -73,3 +73,9 @@ The `Machine` is the abstract that is used to represent the idea of a virtual ma
 
 * [machine-api-provider-docker](https://github.com/criticalstack/machine-api-provider-docker)
 * [machine-api-provider-aws](https://github.com/criticalstack/machine-api-provider-aws)
+
+## Contributing
+
+Any contributors must accept and [sign the CLA](https://cla-assistant.io/criticalstack/machine-api).
+
+This project has adopted the [Capital One Open Source Code of conduct](https://developer.capitalone.com/resources/code-of-conduct).
