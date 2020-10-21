@@ -39,6 +39,7 @@ rules:
   verbs:
   - delete
   - get
+  - list
   - update
   - watch
 - apiGroups:
