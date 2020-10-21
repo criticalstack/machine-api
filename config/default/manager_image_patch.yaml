@@ -7,5 +7,5 @@ spec:
   template:
     spec:
       containers:
-      - image: docker.io/criticalstack/machine-api:v0.2.0
+      - image: docker.io/criticalstack/machine-api:latest
         name: manager
