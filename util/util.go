@@ -69,7 +69,7 @@ func GetMachineByName(ctx context.Context, c client.Client, namespace, name stri
 func GetOwnerInfrastructureProvider(ctx context.Context, c client.Client, obj metav1.ObjectMeta) (*machinev1.InfrastructureProvider, error) {
 	for _, ref := range obj.OwnerReferences {
 		if ref.Kind == "InfrastructureProvider" && ref.APIVersion == machinev1.GroupVersion.String() {
-			return GetInfrastructureProviderByName(ctx, c, obj.Namespace, ref.Name)
+			return GetInfrastructureProviderByName(ctx, c, ref.Name)
 		}
 	}
 	return nil, nil
@@ -77,9 +77,9 @@ func GetOwnerInfrastructureProvider(ctx context.Context, c client.Client, obj me
 
 // GetInfrastructureProviderByName finds and return a InfrastructureProvider
 // object using the specified params.
-func GetInfrastructureProviderByName(ctx context.Context, c client.Client, namespace, name string) (*machinev1.InfrastructureProvider, error) {
+func GetInfrastructureProviderByName(ctx context.Context, c client.Client, name string) (*machinev1.InfrastructureProvider, error) {
 	ip := &machinev1.InfrastructureProvider{}
-	key := client.ObjectKey{Name: name, Namespace: namespace}
+	key := client.ObjectKey{Name: name}
 	if err := c.Get(ctx, key, ip); err != nil {
 		return nil, err
 	}

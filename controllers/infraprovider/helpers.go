@@ -35,7 +35,7 @@ import (
 func (r *InfrastructureProviderReconciler) reconcileExternal(ctx context.Context, ip *machinev1.InfrastructureProvider, ref *corev1.ObjectReference) (*unstructured.Unstructured, error) {
 	logger := r.Log.WithValues("infraprovider", ip.Name, "namespace", ip.Namespace)
 
-	obj, err := external.Get(ctx, r.Client, ref, ip.Namespace)
+	obj, err := external.Get(ctx, r.Client, ref, ref.Namespace)
 	if err != nil {
 		if apierrors.IsNotFound(errors.Cause(err)) {
 			return nil, errors.Wrapf(&mapierrors.RequeueAfterError{RequeueAfter: r.externalReadyWait},
