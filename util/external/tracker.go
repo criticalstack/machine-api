@@ -37,9 +37,8 @@ type ObjectTracker struct {
 
 // Watch uses the controller to issue a Watch only if the object hasn't been seen before.
 func (o *ObjectTracker) Watch(log logr.Logger, obj runtime.Object, handler handler.EventHandler) error {
-	// Consider this a no-op if the controller isn't present.
 	if o.Controller == nil {
-		return nil
+		return errors.Errorf("Watch called on ObjectTracker with no Controller")
 	}
 
 	gvk := obj.GetObjectKind().GroupVersionKind()

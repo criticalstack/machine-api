@@ -55,6 +55,7 @@ func (r *ConfigReconciler) SetupWithManager(mgr ctrl.Manager, options controller
 
 // +kubebuilder:rbac:groups=machine.crit.sh,resources=configs,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=machine.crit.sh,resources=configs/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups="",resources=secrets,verbs=get;create;update;patch
 
 func (r *ConfigReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	ctx := context.Background()
