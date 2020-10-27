@@ -24,10 +24,14 @@ spec:
       description: Config is the Schema for the configs API
       properties:
         apiVersion:
-          description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
           type: string
         kind:
-          description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
           type: string
         metadata:
           type: object
@@ -35,12 +39,15 @@ spec:
           description: ConfigSpec defines the desired state of CritConfig
           properties:
             config:
-              description: Config refers to either a crit ControlPlaneConfiguration or WorkerConfiguration.
+              description: Config refers to either a crit ControlPlaneConfiguration
+                or WorkerConfiguration.
               type: string
             files:
-              description: Files specifies extra files to be passed to user_data upon creation.
+              description: Files specifies extra files to be passed to user_data upon
+                creation.
               items:
-                description: File defines the input for generating write_files in cloud-init.
+                description: File defines the input for generating write_files in
+                  cloud-init.
                 properties:
                   content:
                     description: Content is the actual content of the file.
@@ -56,10 +63,12 @@ spec:
                     description: Owner specifies the ownership of the file, e.g. "root:root".
                     type: string
                   path:
-                    description: Path specifies the full path on disk where to store the file.
+                    description: Path specifies the full path on disk where to store
+                      the file.
                     type: string
                   permissions:
-                    description: Permissions specifies the permissions to assign to the file, e.g. "0640".
+                    description: Permissions specifies the permissions to assign to
+                      the file, e.g. "0640".
                     type: string
                 required:
                 - content
@@ -84,21 +93,25 @@ spec:
                   type: array
               type: object
             postCritCommands:
-              description: PostCritCommands specifies extra commands to run after crit runs
+              description: PostCritCommands specifies extra commands to run after
+                crit runs
               items:
                 type: string
               type: array
             preCritCommands:
-              description: PreCritCommands specifies extra commands to run before crit runs
+              description: PreCritCommands specifies extra commands to run before
+                crit runs
               items:
                 type: string
               type: array
             secrets:
-              description: Secrets specifies extra files that are sensitive so content is stored separately in secrets.
+              description: Secrets specifies extra files that are sensitive so content
+                is stored separately in secrets.
               items:
                 properties:
                   dataSecretName:
-                    description: DataSecretName is the name of the secret that stores the file content.
+                    description: DataSecretName is the name of the secret that stores
+                      the file content.
                     type: string
                   encoding:
                     description: Encoding specifies the encoding of the file contents.
@@ -111,13 +124,17 @@ spec:
                     description: Owner specifies the ownership of the file, e.g. "root:root".
                     type: string
                   path:
-                    description: Path specifies the full path on disk where to store the file.
+                    description: Path specifies the full path on disk where to store
+                      the file.
                     type: string
                   permissions:
-                    description: Permissions specifies the permissions to assign to the file, e.g. "0640".
+                    description: Permissions specifies the permissions to assign to
+                      the file, e.g. "0640".
                     type: string
                   secretKeyName:
-                    description: SecretKeyName is the key of the secret where the content is stored. Can only be a alphanumeric characters, '-', '_' or '.'.
+                    description: SecretKeyName is the key of the secret where the
+                      content is stored. Can only be a alphanumeric characters, '-',
+                      '_' or '.'.
                     type: string
                 required:
                 - dataSecretName
@@ -137,13 +154,15 @@ spec:
                     description: Groups specifies the additional groups for the user
                     type: string
                   homeDir:
-                    description: HomeDir specifies the home directory to use for the user
+                    description: HomeDir specifies the home directory to use for the
+                      user
                     type: string
                   inactive:
                     description: Inactive specifies whether to mark the user as inactive
                     type: boolean
                   lockPassword:
-                    description: LockPassword specifies if password login should be disabled
+                    description: LockPassword specifies if password login should be
+                      disabled
                     type: boolean
                   name:
                     description: Name specifies the user name
@@ -152,13 +171,15 @@ spec:
                     description: Passwd specifies a hashed password for the user
                     type: string
                   primaryGroup:
-                    description: PrimaryGroup specifies the primary group for the user
+                    description: PrimaryGroup specifies the primary group for the
+                      user
                     type: string
                   shell:
                     description: Shell specifies the user's shell
                     type: string
                   sshAuthorizedKeys:
-                    description: SSHAuthorizedKeys specifies a list of ssh authorized keys for the user
+                    description: SSHAuthorizedKeys specifies a list of ssh authorized
+                      keys for the user
                     items:
                       type: string
                     type: array
@@ -176,7 +197,8 @@ spec:
           description: ConfigStatus defines the observed state of Config
           properties:
             dataSecretName:
-              description: DataSecretName is the name of the secret that stores the bootstrap data script.
+              description: DataSecretName is the name of the secret that stores the
+                bootstrap data script.
               type: string
             failureMessage:
               description: FailureMessage will be set on non-retryable errors
@@ -185,7 +207,8 @@ spec:
               description: FailureReason will be set on non-retryable errors
               type: string
             ready:
-              description: Ready indicates the BootstrapData field is ready to be consumed
+              description: Ready indicates the BootstrapData field is ready to be
+                consumed
               type: boolean
           type: object
       type: object

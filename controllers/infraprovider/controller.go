@@ -54,6 +54,9 @@ func (r *InfrastructureProviderReconciler) SetupWithManager(mgr ctrl.Manager, op
 	}
 	r.ctrl = c
 	r.scheme = mgr.GetScheme()
+	r.externalTracker = external.ObjectTracker{
+		Controller: c,
+	}
 	r.externalReadyWait = externalReadyWait
 	return nil
 }
