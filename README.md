@@ -35,7 +35,7 @@ kind: Config
 metadata:
   name: worker-config
 spec:
-  config:
+  config: |
     apiVersion: crit.sh/v1alpha2
     kind: WorkerConfiguration
     clusterName: cinder
