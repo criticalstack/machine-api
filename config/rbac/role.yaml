@@ -59,6 +59,15 @@ rules:
   - create
   - update
 - apiGroups:
+  - certificates.k8s.io
+  resourceNames:
+  - kubernetes.io/kubelet-serving
+  - kubernetes.io/legacy-unknown
+  resources:
+  - signers
+  verbs:
+  - approve
+- apiGroups:
   - ""
   resources:
   - deployments
