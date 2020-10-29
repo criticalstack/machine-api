@@ -90,7 +90,7 @@ func (r *NodeReconciler) ensureMachineForNode(ctx context.Context, n *corev1.Nod
 		return err
 	}
 	for _, m := range machines.Items {
-		if m.Spec.ProviderID != nil && *m.Spec.ProviderID == n.Spec.ProviderID {
+		if m.Spec.ProviderID != nil && *m.Spec.ProviderID != "" && *m.Spec.ProviderID == n.Spec.ProviderID {
 			log.V(1).Info("node already has a machine associated with it, only needs an annotation")
 			return r.setMachineAnnotation(ctx, &m, n.Name)
 		}
@@ -105,7 +105,9 @@ func (r *NodeReconciler) ensureMachineForNode(ctx context.Context, n *corev1.Nod
 		},
 	}
 	if err := r.Create(ctx, m); err != nil {
-		return err
+		if !apierrors.IsAlreadyExists(err) {
+			return err
+		}
 	}
 	return r.setMachineAnnotation(ctx, m, n.Name)
 }

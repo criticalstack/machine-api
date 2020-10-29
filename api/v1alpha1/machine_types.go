@@ -77,7 +77,7 @@ type MachineSpec struct {
 	// InfrastructureRef is a required reference to a custom resource offered
 	// by an infrastructure provider.
 	// +optional
-	InfrastructureRef corev1.ObjectReference `json:"infrastructureRef,omitempty"`
+	InfrastructureRef *corev1.ObjectReference `json:"infrastructureRef,omitempty"`
 
 	// +optional
 	ProviderID *string `json:"providerID,omitempty"`

@@ -159,7 +159,7 @@ func (w writer) Write(p []byte) (n int, err error) {
 }
 
 func (r *MachineReconciler) reconcileDeleteExternal(ctx context.Context, m *machinev1.Machine) error {
-	obj, err := external.Get(ctx, r.Client, &m.Spec.InfrastructureRef, m.Namespace)
+	obj, err := external.Get(ctx, r.Client, m.Spec.InfrastructureRef, m.Namespace)
 	if err != nil && !apierrors.IsNotFound(errors.Cause(err)) {
 		return errors.Wrapf(err, "failed to get InfrastructureRef %q for Machine %q in namespace %q", m.Spec.InfrastructureRef.Name, m.Name, m.Namespace)
 	}
