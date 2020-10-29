@@ -25,6 +25,7 @@ jobs:
 
       - name: Generate release manifest(s)
         run: |
+          export TAG=${{ github.ref }}
           make release
 
       - uses: criticalstack/upsert-release-assets@v1
