@@ -133,6 +133,9 @@ func (r *CSRApproverReconciler) getMachine(ctx context.Context, nodeName string)
 			continue
 		}
 		if nodeName == m.Status.NodeRef.Name {
+			if !m.Status.InfrastructureReady {
+				return nil, errors.Errorf("infrastructure for machine %q is not yet ready", m.Name)
+			}
 			return &m, nil
 		}
 	}
