@@ -55,6 +55,7 @@ func (r *CSRApproverReconciler) SetupWithManager(mgr ctrl.Manager, options contr
 // +kubebuilder:rbac:groups=core,resources=nodes,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=certificates.k8s.io,resources=certificatesigningrequests,verbs=get;watch;update;delete;list
 // +kubebuilder:rbac:groups=certificates.k8s.io,resources=certificatesigningrequests/approval,verbs=create;update
+// +kubebuilder:rbac:groups=certificates.k8s.io,resources=signers,resourceNames=kubernetes.io/legacy-unknown;kubernetes.io/kubelet-serving,verbs=approve
 // +kubebuilder:rbac:groups=authorization.k8s.io,resources=subjectaccessreviews,verbs=create
 
 func (r *CSRApproverReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
