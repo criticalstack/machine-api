@@ -27,7 +27,12 @@ func MachineToInfrastructureMapFunc(gvk schema.GroupVersionKind) handler.ToReque
 		}
 
 		gk := gvk.GroupKind()
+
 		// Return early if the GroupKind doesn't match what we expect.
+
+		if m.Spec.InfrastructureRef == nil {
+			return nil
+		}
 		infraGK := m.Spec.InfrastructureRef.GroupVersionKind().GroupKind()
 		if gk != infraGK {
 			return nil

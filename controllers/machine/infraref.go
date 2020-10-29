@@ -32,8 +32,13 @@ import (
 
 // reconcileInfrastructure reconciles the Spec.InfrastructureRef object on a Machine.
 func (r *MachineReconciler) reconcileInfrastructure(ctx context.Context, m *machinev1.Machine) error {
+	if m.Spec.InfrastructureRef == nil {
+		r.Log.Info("infrastructure reference is empty", "machine", m.Name)
+		return nil
+	}
+
 	// Call generic external reconciler.
-	infraReconcileResult, err := r.reconcileExternal(ctx, m, &m.Spec.InfrastructureRef)
+	infraReconcileResult, err := r.reconcileExternal(ctx, m, m.Spec.InfrastructureRef)
 	if err != nil {
 		if m.Status.InfrastructureReady && strings.Contains(err.Error(), "could not find") {
 			// Infra object went missing after the machine was up and running
