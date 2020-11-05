@@ -33,7 +33,6 @@ import (
 	csrapprovercontroller "github.com/criticalstack/machine-api/controllers/csrapprover"
 	infraprovidercontroller "github.com/criticalstack/machine-api/controllers/infraprovider"
 	machinecontroller "github.com/criticalstack/machine-api/controllers/machine"
-	nodecontroller "github.com/criticalstack/machine-api/controllers/node"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -105,14 +104,14 @@ func main() {
 		setupLog.Error(err, "unable to create controller", "controller", "Machine")
 		os.Exit(1)
 	}
-	if err = (&nodecontroller.NodeReconciler{
-		Client: mgr.GetClient(),
-		Log:    ctrl.Log.WithName("controllers").WithName("Node"),
-		Scheme: mgr.GetScheme(),
-	}).SetupWithManager(mgr, controller.Options{MaxConcurrentReconciles: nodeConcurrency}); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "Node")
-		os.Exit(1)
-	}
+	// if err = (&nodecontroller.NodeReconciler{
+	// 	Client: mgr.GetClient(),
+	// 	Log:    ctrl.Log.WithName("controllers").WithName("Node"),
+	// 	Scheme: mgr.GetScheme(),
+	// }).SetupWithManager(mgr, controller.Options{MaxConcurrentReconciles: nodeConcurrency}); err != nil {
+	// 	setupLog.Error(err, "unable to create controller", "controller", "Node")
+	// 	os.Exit(1)
+	// }
 	if err = (&csrapprovercontroller.CSRApproverReconciler{
 		Client: mgr.GetClient(),
 		Log:    ctrl.Log.WithName("controllers").WithName("CSRApprover"),
